@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DIWiring\" />
     <Folder Include="Middleware\" />
     <Folder Include="Persistence\DBContext\" />
     <Folder Include="Persistence\Migrations\" />
