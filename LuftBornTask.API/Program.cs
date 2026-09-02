@@ -1,3 +1,4 @@
+using LuftBornTask.API.Middleware;
 using LuftBornTask.Infrastructure.DIWiring;
 using LuftBornTask.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseExceptionHandling();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
