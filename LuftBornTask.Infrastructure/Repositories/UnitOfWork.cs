@@ -29,7 +29,7 @@ namespace LuftBornTask.Infrastructure.Repositories
 
         public Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
     }
 }
