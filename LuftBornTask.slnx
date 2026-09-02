@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="LuftBornTask.API/LuftBornTask.API.csproj" />
+    <Project Path="LuftBornTask.Application/LuftBornTask.Application.csproj" />
+    <Project Path="LuftBornTask.Domain/LuftBornTask.Domain.csproj" />
+    <Project Path="LuftBornTask.Infrastructure/LuftBornTask.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="LuftBornTask.UnitTests/LuftBornTask.UnitTests.csproj" />
+  </Folder>
+</Solution>
