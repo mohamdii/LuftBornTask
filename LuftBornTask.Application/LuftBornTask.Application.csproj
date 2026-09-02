@@ -10,4 +10,9 @@
     <ProjectReference Include="..\LuftBornTask.Domain\LuftBornTask.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Validations\" />
+  </ItemGroup>
+
 </Project>
