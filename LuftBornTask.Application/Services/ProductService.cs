@@ -1,4 +1,5 @@
-﻿using LuftBornTask.Application.DTOs;
+﻿using AutoMapper;
+using LuftBornTask.Application.DTOs;
 using LuftBornTask.Application.Interfaces;
 using LuftBornTask.Domain.Entities;
 using System;
@@ -10,33 +11,53 @@ namespace LuftBornTask.Application.Services
     internal class ProductService : IProductService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
+
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public Task<ProductDto> CreateAsync(CreateProductDto dto)
+        public async Task<ProductDto> CreateAsync(CreateProductDto dto)
         {
-            return _unitOfWork.Repository<Product>().AddAsync(dto);
+            var product = _mapper.Map<Product>(dto);
+
+            await _unitOfWork.Repository<Product>().AddAsync(product);
+            await _unitOfWork.SaveChangesAsync();
+
+            return _mapper.Map<ProductDto>(product);
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
+            if (product == null) return;
+
+            _unitOfWork.Repository<Product>().Delete(product);
+            await _unitOfWork.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<ProductDto>> GetAllAsync()
+        public async Task<IEnumerable<ProductDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var products = await _unitOfWork.Repository<Product>().GetAllAsync();
+            IEnumerable<ProductDto> productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+            return productDtos ?? Enumerable.Empty<ProductDto>();
         }
 
-        public Task<ProductDto?> GetByIdAsync(int id)
+        public async Task<ProductDto?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
+            return product == null ? null : _mapper.Map<ProductDto>(product);
         }
 
-        public Task UpdateAsync(int id, UpdateProductDto dto)
+        public async Task UpdateAsync(int id, UpdateProductDto dto)
         {
-            throw new NotImplementedException();
+            var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
+            if (product == null) return;
+
+            _mapper.Map(dto, product);
+            _unitOfWork.Repository<Product>().Update(product);
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }
