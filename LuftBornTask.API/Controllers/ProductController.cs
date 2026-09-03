@@ -1,4 +1,5 @@
-﻿using LuftBornTask.Application.DTOs;
+﻿using LuftBornTask.API.Contracts;
+using LuftBornTask.Application.DTOs;
 using LuftBornTask.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +16,10 @@ namespace LuftBornTask.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<ApiResponse<IEnumerable<ProductDto>>>> GetAll()
         {
             var products = await _productService.GetAllAsync();
-            return Ok(products);
+            return ApiResponse<IEnumerable<ProductDto>>.Ok(products);
         }
 
         [HttpGet("{id}")]
