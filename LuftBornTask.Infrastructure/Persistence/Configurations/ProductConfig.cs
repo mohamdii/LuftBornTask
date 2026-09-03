@@ -18,6 +18,9 @@ namespace LuftBornTask.Infrastructure.Persistence.Configurations
          .IsRequired()
          .HasMaxLength(200);
 
+            builder.Property(x => x.Price)
+     .HasPrecision(18, 2);
+
             builder.Property(p => p.Description)
                 .HasMaxLength(1000);
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LuftBornTask.Application.Interfaces
 {
-    internal interface IProductService
+    public interface IProductService
     {
         Task<ProductDto?> GetByIdAsync(int id);
         Task<IEnumerable<ProductDto>> GetAllAsync();

@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
-using FluentValidation.Validators;
 using LuftBornTask.Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.Validations.Product
+namespace LuftBornTask.Application.ValidationFactories.Product
 {
-    public class CreateProductDtoValidator : AbstractValidator<CreateProductDto>
+    public class UpdateProductDtoValidator : AbstractValidator<UpdateProductDto>
     {
-        public CreateProductDtoValidator()
+        public UpdateProductDtoValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Product name is required.")

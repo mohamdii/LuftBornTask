@@ -1,8 +1,10 @@
-﻿using System;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.Validations
+namespace LuftBornTask.Application.ValidationFactories
 {
     public class ValidatorFactory : IValidatorFactory
     {
@@ -15,11 +17,15 @@ namespace LuftBornTask.Application.Validations
 
         public IValidator<T> GetValidator<T>()
         {
-            var validator = _serviceProvider.GetService(typeof(IValidator<T>)) as IValidator<T>;
+            var validator = _serviceProvider
+                .GetService<IValidator<T>>();
+
             if (validator == null)
             {
-                throw new InvalidOperationException($"No validator found for type {typeof(T).Name}");
+                throw new InvalidOperationException(
+                    $"No validator found for {typeof(T).Name}");
             }
+
             return validator;
         }
     }
