@@ -1,4 +1,5 @@
 using LuftBornTask.API.Middleware;
+using LuftBornTask.Application.DIWiring;
 using LuftBornTask.Infrastructure.DIWiring;
 using LuftBornTask.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

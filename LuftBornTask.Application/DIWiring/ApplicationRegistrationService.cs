@@ -2,7 +2,7 @@
 using LuftBornTask.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-
+using FluentValidation;
 namespace LuftBornTask.Application.DIWiring
 {
     public static class ApplicationRegistrationService
@@ -11,8 +11,8 @@ namespace LuftBornTask.Application.DIWiring
         {
             services.AddAutoMapper(cfg => { }, Assembly.GetExecutingAssembly());
             services.AddScoped<IProductService, ProductService>();
-            // Register application services here
-            // Example: services.AddScoped<IProductService, ProductService>();
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
             return services;
         }
     }
