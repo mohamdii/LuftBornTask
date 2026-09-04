@@ -10,7 +10,7 @@ namespace LuftBornTask.Application.Interfaces
         Task<ProductDto?> GetByIdAsync(int id);
         Task<IEnumerable<ProductDto>> GetAllAsync();
         Task<ProductDto> CreateAsync(CreateProductDto dto);
-        Task UpdateAsync(int id, UpdateProductDto dto);
-        Task DeleteAsync(int id);
+        Task<ProductDto?> UpdateAsync(int id, UpdateProductDto dto);
+        Task<ProductDto?> DeleteAsync(int id);
     }
 }

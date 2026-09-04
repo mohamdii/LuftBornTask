@@ -1,4 +1,5 @@
 ﻿using LuftBornTask.API.Contracts;
+using LuftBornTask.Application.Commands;
 using LuftBornTask.Application.DTOs;
 using LuftBornTask.Application.Interfaces;
 using LuftBornTask.Application.Queries;
@@ -39,21 +40,29 @@ namespace LuftBornTask.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductDto dto)
         {
-            var product = await _productService.CreateAsync(dto);
+            var product = await _sender.Send(new AddProductCommand(dto));
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateProductDto dto)
         {
-            await _productService.UpdateAsync(id, dto);
-            return NoContent();
+            var product = await _sender.Send(new UpdateProductCommand(id, dto));
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _productService.DeleteAsync(id);
-            return NoContent();
+            var product = await _sender.Send(new DeleteProductCommand(id));
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
 
     }
