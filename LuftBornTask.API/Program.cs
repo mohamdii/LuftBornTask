@@ -24,7 +24,7 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-    
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,8 +33,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 app.UseExceptionHandling();
+app.UseCors("AllowAngularDev");
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
