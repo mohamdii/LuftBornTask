@@ -1,6 +1,8 @@
 ﻿using LuftBornTask.API.Contracts;
 using LuftBornTask.Application.DTOs;
 using LuftBornTask.Application.Interfaces;
+using LuftBornTask.Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LuftBornTask.API.Controllers
@@ -9,23 +11,25 @@ namespace LuftBornTask.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
+        private readonly ISender _sender;
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ISender sender)
         {
             _productService = productService;
+            _sender = sender;
         }
 
         [HttpGet]
         public async Task<ActionResult<ApiResponse<IEnumerable<ProductDto>>>> GetAll()
         {
-            var products = await _productService.GetAllAsync();
+            var products = await _sender.Send(new GetProductsQuery());
             return ApiResponse<IEnumerable<ProductDto>>.Ok(products);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<ApiResponse<ProductDto>>> GetById(int id)
         {
-            var product = await _productService.GetByIdAsync(id);
+            var product = await _sender.Send(new GetProductByIdQuery(id));
             if (product == null)
             {
                 return NotFound();

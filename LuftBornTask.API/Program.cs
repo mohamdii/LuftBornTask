@@ -1,13 +1,16 @@
 using LuftBornTask.API.Middleware;
+using LuftBornTask.Application;
 using LuftBornTask.Application.DIWiring;
 using LuftBornTask.Infrastructure.DIWiring;
 using LuftBornTask.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(
+        typeof(ApplicationAssemblyMarker).Assembly
+    ));
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
