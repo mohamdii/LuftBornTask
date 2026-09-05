@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Docker/">
+    <File Path="Dockerfile" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="LuftBornTask.API/LuftBornTask.API.csproj" />
     <Project Path="LuftBornTask.Application/LuftBornTask.Application.csproj" />
