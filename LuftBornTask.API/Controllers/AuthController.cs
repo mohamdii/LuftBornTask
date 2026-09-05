@@ -19,7 +19,6 @@ namespace LuftBornTask.API.Controllers
             _sender = sender;
         }
 
-        [Authorize] // must have a valid Entra ID token, but doesn't need to be pre-registered yet
         [HttpPost("register")]
         public async Task<ActionResult<ApiResponse<object>>> Register([FromBody] RegisterUserDto dto)
         {
