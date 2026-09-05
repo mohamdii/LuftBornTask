@@ -4,10 +4,12 @@ using LuftBornTask.Application.DTOs;
 using LuftBornTask.Application.Interfaces;
 using LuftBornTask.Application.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LuftBornTask.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
@@ -44,25 +46,25 @@ namespace LuftBornTask.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateProductDto dto)
+        public async Task<ActionResult<ApiResponse<ProductDto>>> Update(int id, UpdateProductDto dto)
         {
             var product = await _sender.Send(new UpdateProductCommand(id, dto));
             if (product == null)
             {
-                return NotFound();
+                return ApiResponse<ProductDto>.NotFound("Product not found");
             }
-            return Ok(product);
+            return ApiResponse<ProductDto>.Ok(product);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<ApiResponse<ProductDto>>> Delete(int id)
         {
             var product = await _sender.Send(new DeleteProductCommand(id));
             if (product == null)
             {
-                return NotFound();
+                return ApiResponse<ProductDto>.NotFound("Product not found");
             }
-            return Ok(product);
+            return ApiResponse<ProductDto>.Ok(product);
         }
 
     }

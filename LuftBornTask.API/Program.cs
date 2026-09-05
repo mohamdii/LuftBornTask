@@ -5,7 +5,9 @@ using LuftBornTask.Application.DIWiring;
 using LuftBornTask.Infrastructure.DIWiring;
 using LuftBornTask.Infrastructure.Persistence;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Web;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -19,6 +21,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviors<,>));
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration, "AzureAd");
 
 builder.Services.AddCors(options =>
 {
@@ -40,6 +46,7 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandling();
 app.UseCors("AllowAngularDev");
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
