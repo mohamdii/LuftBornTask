@@ -13,6 +13,7 @@ namespace LuftBornTask.Application.DIWiring
             services.AddScoped<IProductService, ProductService>();
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddScoped<LuftBornTask.Application.ValidationFactories.IValidatorFactory, LuftBornTask.Application.ValidationFactories.ValidatorFactory>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }
