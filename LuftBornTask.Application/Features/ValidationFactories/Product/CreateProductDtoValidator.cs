@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using LuftBornTask.Application.DTOs;
 
-namespace LuftBornTask.Application.Validations.Product
+namespace LuftBornTask.Application.Features.ValidationFactories.Product
 {
     public class CreateProductDtoValidator : AbstractValidator<CreateProductDto>
     {

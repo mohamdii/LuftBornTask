@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using LuftBornTask.Application.DTOs;
+using LuftBornTask.Application.Features.ValidationFactories;
 using LuftBornTask.Application.Interfaces;
-using LuftBornTask.Application.ValidationFactories;
-using LuftBornTask.Application.Validations;
 using LuftBornTask.Domain.Entities;
 using System;
 using System.Collections.Generic;

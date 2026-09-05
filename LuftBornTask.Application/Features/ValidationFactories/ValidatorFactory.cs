@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.ValidationFactories
+namespace LuftBornTask.Application.Features.ValidationFactories
 {
     public class ValidatorFactory : IValidatorFactory
     {

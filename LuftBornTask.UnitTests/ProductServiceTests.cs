@@ -18,14 +18,14 @@ namespace LuftBornTask.UnitTests
         private readonly Mock<IRepository<Product>> _repositoryMock;
         private readonly Mock<IMapper> _mapperMock;
         private readonly ProductService _sut;
-        private readonly Mock<LuftBornTask.Application.ValidationFactories.IValidatorFactory> _validatorFactoryMock;
+        private readonly Mock<Application.Features.ValidationFactories.IValidatorFactory> _validatorFactoryMock;
 
         public ProductServiceTests()
         {
             _unitOfWorkMock = new Mock<IUnitOfWork>();
             _repositoryMock = new Mock<IRepository<Product>>();
             _mapperMock = new Mock<IMapper>();
-            _validatorFactoryMock = new Mock<LuftBornTask.Application.ValidationFactories.IValidatorFactory>();
+            _validatorFactoryMock = new Mock<Application.Features.ValidationFactories.IValidatorFactory>();
 
             _unitOfWorkMock
                 .Setup(u => u.Repository<Product>())

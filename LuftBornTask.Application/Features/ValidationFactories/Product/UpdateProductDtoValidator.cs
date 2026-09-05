@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.ValidationFactories.Product
+namespace LuftBornTask.Application.Features.ValidationFactories.Product
 {
     public class UpdateProductDtoValidator : AbstractValidator<UpdateProductDto>
     {

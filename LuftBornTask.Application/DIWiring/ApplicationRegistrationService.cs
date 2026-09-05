@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using LuftBornTask.Application.Features.ValidationFactories;
 using LuftBornTask.Application.Interfaces;
 using LuftBornTask.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,7 @@ namespace LuftBornTask.Application.DIWiring
             services.AddAutoMapper(cfg => { }, Assembly.GetExecutingAssembly());
             services.AddScoped<IProductService, ProductService>();
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddScoped<LuftBornTask.Application.ValidationFactories.IValidatorFactory, LuftBornTask.Application.ValidationFactories.ValidatorFactory>();
+            services.AddScoped<Features.ValidationFactories.IValidatorFactory, ValidatorFactory>();
             services.AddScoped<IUserService, UserService>();
 
             return services;

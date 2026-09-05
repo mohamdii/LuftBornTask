@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.Commands
+namespace LuftBornTask.Application.Features.Commands
 {
     internal class DeleteProductHandler : IRequestHandler<DeleteProductCommand, ProductDto>
     {

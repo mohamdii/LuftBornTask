@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.Queries
+namespace LuftBornTask.Application.Features.Commands
 {
-    public record GetProductsQuery() : IRequest<IEnumerable<ProductDto>>;
+    public record DeleteProductCommand(int Id) : IRequest<ProductDto>;
+
 }

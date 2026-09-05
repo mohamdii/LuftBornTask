@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.Commands
+namespace LuftBornTask.Application.Features.Queries
 {
-    public record AddProductCommand(CreateProductDto Dto) : IRequest<ProductDto>;
-
+    public record GetProductsQuery() : IRequest<IEnumerable<ProductDto>>;
 }

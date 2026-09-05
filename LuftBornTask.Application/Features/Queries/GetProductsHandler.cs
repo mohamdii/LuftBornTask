@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LuftBornTask.Application.Queries
+namespace LuftBornTask.Application.Features.Queries
 {
     internal class GetProductsHandler : IRequestHandler<GetProductsQuery, IEnumerable<ProductDto>>
     {
